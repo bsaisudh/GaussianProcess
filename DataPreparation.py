@@ -14,8 +14,8 @@ def readTrainFile(fileNameTrain, plot = False):
         Y = []
         rows = csv.reader(file, delimiter = ",")
         for row in rows:
-            X.append(float(row[0]))
-            Y.append(float(row[1]))
+            X.append( [ float(i) for i in row[0:-1] ] )
+            Y.append(float(row[-1]))
         if plot:
             plt.figure()
             plt.plot(X,Y,'o')
@@ -27,7 +27,7 @@ def readTestFile(fileNameTest, plot = False):
         X = []
         rows = csv.reader(file, delimiter = ",")
         for row in rows:
-            X.append(float(row[0]))
+            X.append( [ float(i) for i in row ] )
         if plot:
             plt.figure()
             plt.plot(X,[0]*len(X),'o')
@@ -35,7 +35,7 @@ def readTestFile(fileNameTest, plot = False):
         return X
 
 if __name__ == "__main__":
-    fileNameTrain = "Data/problem4a_train.csv"
-    fileNameTest = "Data/problem4a_test.csv"
-    readTrainFile(fileNameTrain, True)
-    readTestFile(fileNameTest, True)
+    fileNameTrain = "Data/problem4b_train.csv"
+    fileNameTest = "Data/problem4b_test.csv"
+    xTrain,yTrain = readTrainFile(fileNameTrain, True)
+    xTest = readTestFile(fileNameTest, True)

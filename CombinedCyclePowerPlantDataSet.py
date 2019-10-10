@@ -17,10 +17,10 @@ from sklearn.gaussian_process.kernels import RBF, ConstantKernel as C
 xTrain, yTrain = readTrainFile("Data/problem4b_train.csv")
 xTest = readTestFile("Data/problem4b_test.csv")
 
-xTrain = np.atleast_2d(xTrain).T
-xTest = np.atleast_2d(xTest).T
+xTrain = np.atleast_2d(xTrain)
+xTest = np.atleast_2d(xTest)
 
-kernel = C(1.0, (1e-3, 1e3)) * RBF(10, (1e-2, 1e2))
+kernel = C(1.0, (1e-3, 1e3)) * RBF(10, (1e-2, 1e2)) + RBF(20, (1e-2, 1e2))
 gp = GaussianProcessRegressor(kernel=kernel, alpha=0.5 ** 5,
                               n_restarts_optimizer=10)
 gp.fit(xTrain, yTrain)
