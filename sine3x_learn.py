@@ -10,6 +10,7 @@ from DataPreparation import readTrainFile
 
 import numpy as np
 from matplotlib import pyplot as plt
+import time
 
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF, ConstantKernel as C
@@ -35,11 +36,16 @@ kernel3 = C1 * RQ1 + RBF2
 kernel4 = C1 * ESS1 + RBF2
 
 GP = []
-for kernel in [kernel1, kernel2, kernel3, kernel4]:
+for ndx, kernel in zip([1,2,3,4], [kernel1, kernel2, kernel3, kernel4]):
+    t = time.time()
+    print('---------------------------------------------------------------------------')
+    print(f'time - {t} :: Fitting GP for kernel - {ndx}')
     gp = GaussianProcessRegressor(kernel=kernel, #alpha=0.5 ** 5,
                               n_restarts_optimizer=10)
     gp.fit(xTrain, yTrain)
     GP.append(gp)
+    print(f'GP for Kernel - {ndx} Finished :: Elapsed Time - {time.time()-t}')
+    print('---------------------------------------------------------------------------')
     
 f, axs = plt.subplots(2,2)
 for ndx, gp, ax in zip([1,2,3,4], GP, [[0,0],[0,1],[1,0],[1,1]]):
