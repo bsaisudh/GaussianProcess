@@ -1,0 +1,16 @@
+Prerequisits:
+Python 3
+Matplotlib
+Numpy 
+scikitlearn
+
+Contents:
+1) 'GaussianProcess' Folder - Code
+2) 'GaussianProcess/Data' Folder - *.csv (Input files)
+3) 'GaussianProcess/Results' Folder - Report and outputfiles
+
+Code Execution : 
+1) Unzip the contents to folder 
+2) Open GaussianProcess folder
+3) Execute 'problem4a_sol.py'
+4) Execute 'problem4b_sol.py'. The ouput files will be generated in '/metricTSP/GaussianProcess.csv' folder
